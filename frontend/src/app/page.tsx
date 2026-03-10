@@ -1,3 +1,5 @@
+import ChatWindow from "@/components/ChatWindow";
+
 export default function Home() {
-  return <main>EPA Safer Choice Chatbot</main>;
+  return <ChatWindow />;
 }
