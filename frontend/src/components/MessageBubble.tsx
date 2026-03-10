@@ -1,3 +1,6 @@
+"use client";
+
+import ReactMarkdown from "react-markdown";
 import { Message } from "@/lib/types";
 
 export default function MessageBubble({ message }: { message: Message }) {
@@ -19,7 +22,44 @@ export default function MessageBubble({ message }: { message: Message }) {
             : "bg-white text-gray-700 border border-gray-100 rounded-bl-sm"
         }`}
       >
-        <div className="whitespace-pre-wrap">{message.content}</div>
+        {isUser ? (
+          <div className="whitespace-pre-wrap">{message.content}</div>
+        ) : (
+          <div className="markdown-content">
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => <h1 className="text-lg font-bold text-gray-900 mt-3 mb-2 first:mt-0">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-base font-semibold text-gray-900 mt-3 mb-1.5 first:mt-0">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-sm font-semibold text-gray-800 mt-2.5 mb-1 first:mt-0">{children}</h3>,
+                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
+                li: ({ children }) => <li className="text-[13.5px]">{children}</li>,
+                strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
+                em: ({ children }) => <em className="italic">{children}</em>,
+                a: ({ href, children }) => (
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 underline underline-offset-2">
+                    {children}
+                  </a>
+                ),
+                table: ({ children }) => (
+                  <div className="overflow-x-auto my-2 rounded-lg border border-gray-200">
+                    <table className="w-full text-[13px]">{children}</table>
+                  </div>
+                ),
+                thead: ({ children }) => <thead className="bg-emerald-50 text-gray-700">{children}</thead>,
+                th: ({ children }) => <th className="px-3 py-2 text-left font-semibold text-[12px] uppercase tracking-wide">{children}</th>,
+                td: ({ children }) => <td className="px-3 py-2 border-t border-gray-100">{children}</td>,
+                hr: () => <hr className="my-3 border-gray-200" />,
+                code: ({ children }) => (
+                  <code className="bg-gray-100 text-emerald-700 px-1.5 py-0.5 rounded text-[13px] font-mono">{children}</code>
+                ),
+              }}
+            >
+              {message.content}
+            </ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   );
