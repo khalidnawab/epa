@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+products.db
+node_modules/
+.next/
+*.db-journal
+venv/
+.venv/
+reports/
