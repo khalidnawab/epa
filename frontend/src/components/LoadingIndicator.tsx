@@ -72,7 +72,7 @@ const LABELS = [
   "Almost there...",
 ];
 
-export default function LoadingIndicator() {
+export default function LoadingIndicator({ darkMode = false }: { darkMode?: boolean }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -89,12 +89,12 @@ export default function LoadingIndicator() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
         </svg>
       </div>
-      <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-sm px-5 py-4 shadow-sm">
+      <div className={`rounded-2xl rounded-bl-sm px-5 py-4 shadow-sm border ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-100"}`}>
         <div className="flex items-center gap-3">
           <div className="transition-all duration-500 ease-in-out" key={index}>
             {ICONS[index]}
           </div>
-          <span className="text-[13px] text-gray-400 font-medium">{LABELS[index]}</span>
+          <span className={`text-[13px] font-medium ${darkMode ? "text-gray-500" : "text-gray-400"}`}>{LABELS[index]}</span>
         </div>
       </div>
     </div>
