@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EPA Safer Choice Product Recommendations</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333;
+      line-height: 1.5;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #2e7d32;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 13px;
+      margin-bottom: 30px;
+    }
+
+    .summary-section {
+      background-color: #f1f8e9;
+      border-left: 4px solid #2e7d32;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .summary-section h2 {
+      color: #2e7d32;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .summary-section p {
+      font-size: 13px;
+      color: #444;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 12px;
+    }
+
+    thead th {
+      background-color: #2e7d32;
+      color: #fff;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 600;
+    }
+
+    tbody td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #f1f8e9;
+    }
+
+    td a {
+      color: #2e7d32;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    .footer {
+      border-top: 2px solid #2e7d32;
+      padding-top: 14px;
+      font-size: 11px;
+      color: #777;
+    }
+
+    .footer a {
+      color: #2e7d32;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>EPA Safer Choice Product Recommendations</h1>
+  <p class="subtitle">Generated on {{ date }}</p>
+
+  <div class="summary-section">
+    <h2>Your Needs</h2>
+    <p>{{ summary }}</p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Company</th>
+        <th>Sector</th>
+        <th>Category</th>
+        <th>Why Recommended</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rec in recommendations %}
+      <tr>
+        <td><a href="{{ rec.product_url }}">{{ rec.product_name }}</a></td>
+        <td>{{ rec.company_name }}</td>
+        <td>{{ rec.sector }}</td>
+        <td>{{ rec.category }}</td>
+        <td>{{ rec.reason }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="footer">
+    <p>
+      This report was generated on {{ date }} using data from the
+      <a href="https://www.epa.gov/saferchoice">EPA Safer Choice Program</a>.
+      Product certifications are subject to change; visit the EPA website for the latest information.
+    </p>
+  </div>
+</body>
+</html>
