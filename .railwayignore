@@ -1,0 +1,9 @@
+frontend/
+frontend/node_modules/
+backend/venv/
+.git/
+docs/
+reports/
+*.db
+node_modules/
+.next/
