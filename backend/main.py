@@ -1,3 +1,4 @@
+import os
 import uuid
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
@@ -13,9 +14,17 @@ from backend.chat import get_chat_response
 
 app = FastAPI(title="EPA Safer Choice Chatbot")
 
+allowed_origins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+]
+frontend_url = os.getenv("FRONTEND_URL")
+if frontend_url:
+    allowed_origins.append(frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    allow_origins=allowed_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
