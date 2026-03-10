@@ -161,9 +161,11 @@ def execute_tool(tool_name: str, tool_input: dict, conversation_id: str) -> str:
         generate_pdf(report_id, summary, recommendations, products)
         database.save_report(report_id, conversation_id, product_ids, summary)
 
+        import os
+        base_url = os.getenv("BASE_URL", "http://localhost:8001")
         return json.dumps({
             "report_id": report_id,
-            "download_url": f"/api/chat/{conversation_id}/report/{report_id}",
+            "download_url": f"{base_url}/api/chat/{conversation_id}/report/{report_id}",
         })
 
     return json.dumps({"error": f"Unknown tool: {tool_name}"})
