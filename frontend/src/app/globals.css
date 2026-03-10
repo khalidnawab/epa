@@ -9,18 +9,89 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse-dot {
-  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-  40% { opacity: 1; transform: scale(1); }
-}
-
 .animate-fade-in {
   animation: fade-in 0.3s ease-out forwards;
 }
 
-.dot-pulse span:nth-child(1) { animation: pulse-dot 1.4s ease-in-out infinite; }
-.dot-pulse span:nth-child(2) { animation: pulse-dot 1.4s ease-in-out 0.2s infinite; }
-.dot-pulse span:nth-child(3) { animation: pulse-dot 1.4s ease-in-out 0.4s infinite; }
+/* Spray bottle squirt */
+@keyframes spray-squirt {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(0deg); }
+}
+
+@keyframes spray-mist {
+  0% { opacity: 0; transform: translateX(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(6px); }
+}
+
+.animate-spray-squirt {
+  animation: spray-squirt 2s ease-in-out infinite;
+}
+
+.animate-spray-mist {
+  animation: spray-mist 1.5s ease-out infinite;
+}
+
+.delay-100 { animation-delay: 0.15s; }
+.delay-200 { animation-delay: 0.3s; }
+
+/* Mop sweep */
+@keyframes mop-sweep {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.animate-mop-sweep {
+  animation: mop-sweep 1.2s ease-in-out infinite;
+}
+
+/* Sparkles */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-sparkle-1 {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-sparkle-2 {
+  animation: sparkle 1.5s ease-in-out 0.5s infinite;
+}
+
+.animate-sparkle-3 {
+  animation: sparkle 1.5s ease-in-out 1s infinite;
+}
+
+/* Bubbles */
+@keyframes bubble-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes bubble-float-2 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.05); }
+}
+
+@keyframes bubble-float-3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-bubble-float {
+  animation: bubble-float 2s ease-in-out infinite;
+}
+
+.animate-bubble-float-2 {
+  animation: bubble-float-2 2.5s ease-in-out 0.3s infinite;
+}
+
+.animate-bubble-float-3 {
+  animation: bubble-float-3 1.8s ease-in-out 0.6s infinite;
+}
 
 /* Custom scrollbar */
 .chat-scroll::-webkit-scrollbar { width: 4px; }

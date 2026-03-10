@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Message } from "@/lib/types";
 import { createConversation, sendMessage } from "@/lib/api";
 import MessageBubble from "./MessageBubble";
+import LoadingIndicator from "./LoadingIndicator";
 
 const WELCOME_MESSAGE: Message = {
   role: "assistant",
@@ -104,22 +105,7 @@ export default function ChatWindow() {
           {messages.map((msg, i) => (
             <MessageBubble key={i} message={msg} />
           ))}
-          {loading && (
-            <div className="flex justify-start mb-4 animate-fade-in">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shrink-0 mr-2.5 mt-0.5 shadow-sm">
-                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
-              <div className="bg-white border border-gray-100 rounded-2xl rounded-bl-sm px-5 py-4 shadow-sm">
-                <div className="dot-pulse flex gap-1.5">
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full inline-block"></span>
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full inline-block"></span>
-                  <span className="w-2 h-2 bg-emerald-500 rounded-full inline-block"></span>
-                </div>
-              </div>
-            </div>
-          )}
+          {loading && <LoadingIndicator />}
           <div ref={messagesEndRef} />
         </div>
       </div>
